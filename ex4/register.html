@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>DreamLauncher - Job Seeker Registration</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background-color:LightSkyBlue;
+display:flex;
+justify-content:center;
+padding:30px;
+}
+
+.form-box{
+background:white;
+width:900px;
+padding:25px;
+border:3px solid DeepSkyBlue;
+border-radius:10px;
+}
+
+h2{
+text-align:center;
+color:DeepSkyBlue;
+margin-bottom:20px;
+}
+
+#registrationForm{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.full{
+grid-column:1/3;
+}
+
+label{
+display:block;
+margin-bottom:5px;
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:8px;
+border:1px solid #ccc;
+border-radius:4px;
+box-sizing:border-box;
+}
+
+.radio-group input{
+width:auto;
+margin-right:5px;
+}
+
+.error{
+color:red;
+font-size:13px;
+margin-top:3px;
+}
+
+button{
+width:100%;
+padding:10px;
+background-color:DeepSkyBlue;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background-color:DodgerBlue;
+}
+
+#successMsg{
+color:green;
+text-align:center;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="form-box">
+
+<h2>DreamLauncher Registration</h2>
+
+<form id="registrationForm" novalidate>
+
+<div>
+<label>Full Name *</label>
+<input type="text" id="fullName" placeholder="Enter full name">
+<div class="error" id="fullNameError"></div>
+</div>
+
+<div>
+<label>Email *</label>
+<input type="text" id="email" placeholder="Enter email">
+<div class="error" id="emailError"></div>
+</div>
+
+<div>
+<label>Phone Number *</label>
+<input type="text" id="phone" placeholder="Enter phone number">
+<div class="error" id="phoneError"></div>
+</div>
+
+<div>
+<label>Password *</label>
+<input type="password" id="password" placeholder="Enter password">
+<div class="error" id="passwordError"></div>
+</div>
+
+<div>
+<label>Desired Job Role *</label>
+<input type="text" id="jobTitle" placeholder="Enter job role">
+<div class="error" id="jobTitleError"></div>
+</div>
+
+<div>
+<label>Years of Experience *</label>
+<input type="number" id="experience"placeholder="Enter year of experience eg.2">
+<div class="error" id="experienceError"></div>
+</div>
+
+<div>
+<label>Previous Job Role *</label>
+<input type="text" id="previousRole" placeholder="Enter previous job role">
+<div class="error" id="previousRoleError"></div>
+</div>
+
+<div>
+<label>Gender *</label>
+<select id="gender">
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+<div class="error" id="genderError"></div>
+</div>
+
+<div>
+<label>Preferred Work Mode *</label>
+<div class="radio-group">
+<input type="radio" name="workMode" value="Remote">Remote
+<input type="radio" name="workMode" value="Offline">Offline
+</div>
+<div class="error" id="workModeError"></div>
+</div>
+
+<div>
+<label>Employment Type *</label>
+<div class="radio-group">
+<input type="radio" name="employmentType" value="Full Time">Full Time
+<input type="radio" name="employmentType" value="Part Time">Part Time
+</div>
+<div class="error" id="employmentTypeError"></div>
+</div>
+
+<div>
+<label>Linkedin Link*</label>
+<input type="text" id="linkedinLink" placeholder="//https....">
+<div class="error" id="linkedinLinkError"></div>
+</div>
+
+<div>
+<label>Upload Resume *</label>
+<input type="file" id="resumeFile">
+<div class="error" id="resumeFileError"></div>
+</div>
+
+<div class="full">
+<button type="submit">Register</button>
+</div>
+
+<div class="full" id="successMsg"></div>
+
+</form>
+
+</div>
+
+<script>
+
+document.getElementById("registrationForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let isValid=true;
+
+document.getElementById("fullNameError").textContent="";
+document.getElementById("emailError").textContent="";
+document.getElementById("phoneError").textContent="";
+document.getElementById("passwordError").textContent="";
+document.getElementById("jobTitleError").textContent="";
+document.getElementById("experienceError").textContent="";
+document.getElementById("previousRoleError").textContent="";
+document.getElementById("workModeError").textContent="";
+document.getElementById("employmentTypeError").textContent="";
+document.getElementById("genderError").textContent="";
+document.getElementById("linkedinLinkError").textContent="";
+document.getElementById("resumeFileError").textContent="";
+document.getElementById("successMsg").textContent="";
+
+const fullName=document.getElementById("fullName").value.trim();
+if(fullName==""){
+document.getElementById("fullNameError").textContent="Enter your name";
+isValid=false;
+}
+
+const email=document.getElementById("email").value.trim();
+const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if(email==""){
+document.getElementById("emailError").textContent="Enter your email";
+isValid=false;
+}
+else if(!emailPattern.test(email)){
+document.getElementById("emailError").textContent="Invalid email";
+isValid=false;
+}
+
+const phone=document.getElementById("phone").value.trim();
+const phonePattern=/^[0-9]{10}$/;
+if(phone==""){
+document.getElementById("phoneError").textContent="Enter phone number";
+isValid=false;
+}
+else if(!phonePattern.test(phone)){
+document.getElementById("phoneError").textContent="Enter valid phone number";
+isValid=false;
+}
+
+const password=document.getElementById("password").value;
+if(password==""){
+document.getElementById("passwordError").textContent="Enter password";
+isValid=false;
+}
+else if(password.length<6){
+document.getElementById("passwordError").textContent="Minimum 6 characters";
+isValid=false;
+}
+
+const jobTitle=document.getElementById("jobTitle").value.trim();
+if(jobTitle==""){
+document.getElementById("jobTitleError").textContent="Enter job role";
+isValid=false;
+}
+
+const experience=document.getElementById("experience").value;
+if(experience==""){
+document.getElementById("experienceError").textContent="Enter experience";
+isValid=false;
+}
+else if(experience<0){
+document.getElementById("experienceError").textContent="Invalid experience";
+isValid=false;
+}
+
+const previousRole=document.getElementById("previousRole").value.trim();
+if(experience>0 && previousRole==""){
+document.getElementById("previousRoleError").textContent="Enter previous job role";
+isValid=false;
+}
+
+const gender=document.getElementById("gender").value;
+if(gender==""){
+document.getElementById("genderError").textContent="Select gender";
+isValid=false;
+}
+
+const workMode=document.querySelector('input[name="workMode"]:checked');
+if(!workMode){
+document.getElementById("workModeError").textContent="Select work mode";
+isValid=false;
+}
+
+const employmentType=document.querySelector('input[name="employmentType"]:checked');
+if(!employmentType){
+document.getElementById("employmentTypeError").textContent="Select employment type";
+isValid=false;
+}
+
+const linkedinLink=document.getElementById("linkedinLink").value.trim();
+const urlPattern=/^(https?:\/\/)[^\s]+$/;
+if(linkedinLink==""){
+document.getElementById("linkedinLinkError").textContent="Enter resume link";
+isValid=false;
+}
+else if(!urlPattern.test(linkedinLink)){
+document.getElementById("linkedinLinkError").textContent="Invalid link";
+isValid=false;
+}
+
+const resumeFile=document.getElementById("resumeFile").value;
+if(resumeFile==""){
+document.getElementById("resumeFileError").textContent="Upload resume";
+isValid=false;
+}
+else{
+const allowed=/(\.pdf|\.doc|\.docx)$/i;
+if(!allowed.test(resumeFile)){
+document.getElementById("resumeFileError").textContent="Only PDF/DOC/DOCX";
+isValid=false;
+}
+}
+
+if(isValid){
+document.getElementById("successMsg").textContent="Registration Successful!";
+document.getElementById("registrationForm").reset();
+}
+
+});
+
+</script>
+
+</body>
+</html>
