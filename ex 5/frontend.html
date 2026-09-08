@@ -1,0 +1,209 @@
+<html>
+<head>
+<title>Online Examination System</title>
+<style>
+body {
+font-family: Arial;
+background-color: lightblue;
+margin: 20px;
+}
+.box {
+width: 80%;
+margin: auto;
+background-color: white;
+padding: 20px;
+border: 2px solid black;
+}
+h1 {
+text-align: center;
+color: darkblue;
+}
+.question {
+background-color: #f2f2f2;
+padding: 12px;
+margin-top: 15px;
+border: 1px solid gray;
+}
+.question:hover {
+background-color: #d9f2ff;
+}
+.submitBtn {
+background-color: green;
+color: white;
+padding: 12px 25px;
+border: none;
+cursor: pointer;
+font-size: 16px;
+}
+.submitBtn:hover {
+background-color: darkgreen;
+}
+#result {
+margin-top: 20px;
+padding: 15px;
+background-color: lightyellow;
+border: 2px solid orange;
+}
+.correct {
+color: green;
+font-weight: bold;
+margin-top: 10px;
+}
+.wrong {
+color: red;
+font-weight: bold;
+margin-top: 10px;
+}
+</style>
+<script>
+function submitTest() {
+try {
+var name = localStorage.getItem("studentName");
+var rollno = localStorage.getItem("rollNo");
+var studentClass = localStorage.getItem("studentClass");
+if (!name || !rollno || !studentClass) {
+throw "Student details not found. Please start the examination again.";
+}
+var answers = ["a","b","c","a","b","c","d","b","a","a"];
+var correctAnswers = [
+"Creating web pages",
+"<p>",
+"CSS",
+"color",
+"JavaScript",
+"try",
+"RegExp",
+"console.log()",
+"let",
+"?"
+];
+var questions = ["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10"];
+var score = 0;
+var unanswered = 0;
+for (var i = 0; i < questions.length; i++) {
+var selected = document.querySelector('input[name="' + questions[i] + '"]:checked');
+if (selected == null) {
+unanswered++;
+}
+else if (selected.value == answers[i]) {
+score++;}}
+if (unanswered > 0) {
+throw "Please answer all 10 questions before submitting.";
+}
+var result = "";
+result += "<h2>Exam Result</h2>";
+result += "<p><b>Student Name:</b> " + name + "</p>";
+result += "<p><b>Roll Number:</b> " + rollno + "</p>";
+result += "<p><b>Class:</b> " + studentClass + "</p>";
+result += "<p><b>Your Score:</b> " + score + " / 10</p>";
+if (score >= 5) {
+result += "<p style='color:green;'><b>Result: PASS</b></p>";
+}
+else {
+result += "<p style='color:red;'><b>Result: FAIL</b></p>";
+}
+
+for (var i = 0; i < questions.length; i++) {
+var selected = document.querySelector('input[name="' + questions[i] + '"]:checked');
+var questionBox = document.getElementById("question" + (i + 1));
+
+if (selected.value == answers[i]) {
+questionBox.innerHTML += "<p class='correct'>✓ Correct Answer</p>";
+}
+else {
+questionBox.innerHTML += "<p class='wrong'>✗ Wrong Answer<br>Correct Answer: " + correctAnswers[i] + "</p>";
+}
+}
+
+document.getElementById("result").innerHTML = result;
+document.querySelector(".submitBtn").disabled = true;
+}
+catch (error) {
+alert(error);
+}
+}
+</script>
+</head>
+<body>
+<div class="box">
+<h1>Online Examination System</h1>
+<hr>
+<h3>Answer all the questions</h3>
+<div class="question" id="question1">
+<p><b>1. What is HTML used for?</b></p>
+<input type="radio" name="q1" value="a"> A) Creating web pages<br>
+<input type="radio" name="q1" value="b"> B) Creating database<br>
+<input type="radio" name="q1" value="c"> C) Operating system<br>
+<input type="radio" name="q1" value="d"> D) Antivirus
+</div>
+<div class="question" id="question2">
+<p><b>2. Which tag is used to create a paragraph in HTML?</b></p>
+<input type="radio" name="q2" value="a"> A) &lt;h1&gt;<br>
+<input type="radio" name="q2" value="b"> B) &lt;p&gt;<br>
+<input type="radio" name="q2" value="c"> C) &lt;br&gt;<br>
+<input type="radio" name="q2" value="d"> D) &lt;body&gt;
+</div>
+<div class="question" id="question3">
+<p><b>3. Which language is used to style a web page?</b></p>
+<input type="radio" name="q3" value="a"> A) HTML<br>
+<input type="radio" name="q3" value="b"> B) Java<br>
+<input type="radio" name="q3" value="c"> C) CSS<br>
+<input type="radio" name="q3" value="d"> D) SQL
+</div>
+<div class="question" id="question4">
+<p><b>4. Which CSS property is used to change text color?</b></p>
+<input type="radio" name="q4" value="a"> A) color<br>
+<input type="radio" name="q4" value="b"> B) font<br>
+<input type="radio" name="q4" value="c"> C) text<br>
+<input type="radio" name="q4" value="d"> D) background
+</div>
+<div class="question" id="question5">
+<p><b>5. Which language is mainly used to add interactivity to a web page?</b></p>
+<input type="radio" name="q5" value="a"> A) HTML<br>
+<input type="radio" name="q5" value="b"> B) JavaScript<br>
+<input type="radio" name="q5" value="c"> C) CSS<br>
+<input type="radio" name="q5" value="d"> D) SQL
+</div>
+<div class="question" id="question6">
+<p><b>6. Which keyword is used for exception handling in JavaScript?</b></p>
+<input type="radio" name="q6" value="a"> A) check<br>
+<input type="radio" name="q6" value="b"> B) error<br>
+<input type="radio" name="q6" value="c"> C) try<br>
+<input type="radio" name="q6" value="d"> D) solve
+</div>
+<div class="question" id="question7">
+<p><b>7. Which of the following term is used to handle regular expressions in JavaScript?</b></p>
+<input type="radio" name="q7" value="a"> A) reg<br>
+<input type="radio" name="q7" value="b"> B) rexcep<br>
+<input type="radio" name="q7" value="c"> C) regular<br>
+<input type="radio" name="q7" value="d"> D) RegExp
+</div>
+<div class="question" id="question8">
+<p><b>8. Which statement is used to print in JavaScript?</b></p>
+<input type="radio" name="q8" value="a"> A) Print()<br>
+<input type="radio" name="q8" value="b"> B) console.log()<br>
+<input type="radio" name="q8" value="c"> C) println()<br>
+<input type="radio" name="q8" value="d"> D) printf()
+</div>
+<div class="question" id="question9">
+<p><b>9. How to declare a variable in JavaScript?</b></p>
+<input type="radio" name="q9" value="a"> A) let<br>
+<input type="radio" name="q9" value="b"> B) int<br>
+<input type="radio" name="q9" value="c"> C) decl<br>
+<input type="radio" name="q9" value="d"> D) str
+</div>
+<div class="question" id="question10">
+<p><b>10. When we are sending data in URL in get method, how to seperate path and query string?</b></p>
+<input type="radio" name="q10" value="a"> A) ?<br>
+<input type="radio" name="q10" value="b"> B) &<br>
+<input type="radio" name="q10" value="c"> C) ,<br>
+<input type="radio" name="q10" value="d"> D) +
+</div>
+<br><br>
+<div style="text-align:center;">
+<button class="submitBtn" onclick="submitTest()">Submit Test</button>
+</div>
+<div id="result"></div>
+</div>
+</body>
+</html>

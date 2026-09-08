@@ -1,0 +1,151 @@
+ <html>
+<head>
+<title>Online Examination - Start</title>
+<style>
+body {
+font-family: Arial;
+background-color: lightblue;
+margin: 0;
+padding: 0;
+}
+.container {
+width: 500px;
+margin: 70px auto;
+background-color: white;
+padding: 30px;
+border: 2px solid darkblue;
+border-radius: 10px;
+}
+h1 {
+text-align: center;
+color: darkblue;
+}
+h3 {
+text-align: center;
+color: gray;
+}
+.details {
+margin-top: 25px;
+}
+label {
+display: block;
+margin-top: 15px;
+font-weight: bold;
+}
+input[type="text"] {
+width: 95%;
+padding: 10px;
+margin-top: 5px;
+border: 1px solid gray;
+border-radius: 5px;
+box-sizing: border-box;
+}
+input[type="text"]:focus {
+border: 2px solid darkblue;
+outline: none;
+}
+.startBtn {
+display: block;
+margin: 30px auto 10px;
+padding: 12px 30px;
+background-color: green;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+}
+.startBtn:hover {
+background-color: darkgreen;
+}
+.note {
+text-align: center;
+color: red;
+margin-top: 20px;
+}
+</style>
+<script>
+function startAssignment() {
+try {
+var name = document.getElementById("name").value;
+var rollno = document.getElementById("rollno").value;
+var studentClass = document.getElementById("studentClass").value;
+
+if (name === "") {
+throw "Please enter your name.";
+}
+
+if (rollno === "") {
+throw "Please enter your roll number.";
+}
+
+if (studentClass === "") {
+throw "Please enter your class.";
+}
+
+var namePattern = /^[A-Za-z ]+$/;
+
+if (!namePattern.test(name)) {
+throw "Student name should contain letters and spaces only.";
+}
+
+if (name.length < 3) {
+throw "Student name must contain at least 3 characters.";
+}
+
+var rollPattern = /^[A-Za-z0-9]+$/;
+
+if (!rollPattern.test(rollno)) {
+throw "Roll number should contain numbers and characters only.";
+}
+
+if (rollno.length < 1 || rollno.length > 10) {
+throw "Roll number should contain 1 to 10 characters.";
+}
+
+var classPattern = /^[A-Za-z0-9 ]+$/;
+
+if (!classPattern.test(studentClass)) {
+throw "Class should contain letters, numbers and spaces only.";
+}
+
+if (studentClass.length > 20) {
+throw "Class should not exceed 20 characters.";
+}
+
+localStorage.setItem("studentName", name);
+localStorage.setItem("rollNo", rollno);
+localStorage.setItem("studentClass", studentClass);
+
+window.location.href="frontend.html";
+}
+catch (error) {
+alert(error);
+}
+}
+
+function validateRollNo(input) {
+input.value = input.value.replace(/[^A-Za-z0-9]/g, "");
+}
+</script>
+</head>
+<body>
+<div class="container">
+<h1>Online Examination System</h1>
+<h3>Online Quiz</h3>
+<hr>
+<div class="details">
+<label for="name">Student Name</label>
+<input type="text" id="name" placeholder="Enter your name" maxlength="50" required>
+
+<label for="rollno">Roll Number</label>
+<input type="text" id="rollno" placeholder="Enter your roll number" maxlength="10" required oninput="validateRollNo(this)">
+
+<label for="studentClass">Class</label>
+<input type="text" id="studentClass" placeholder="Enter your class" maxlength="20" required>
+</div>
+<button class="startBtn" onclick="startAssignment()">Start Assignment</button>
+<p class="note">Please enter all details before starting the test.</p>
+</div>
+</body>
+</html>
