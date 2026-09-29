@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Restaurant Menu</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8f0;
+            margin: 0;
+            padding: 50px;
+            text-align: center;
+            color: #4e342e;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #bf5b17;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #795548;
+            font-size: 18px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 13px 30px;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ca6f1e;
+        }
+
+        #menu {
+            display: none;
+            margin-top: 40px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #d35400;
+            color: white;
+            padding: 14px;
+        }
+
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #f0d5c0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fff3e6;
+        }
+
+        tr:hover {
+            background-color: #ffe0c2;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Restaurant Menu</h1>
+
+    <p>Click the button to view our food menu</p>
+
+    <button onclick="showMenu()">View Menu</button>
+
+    <div id="menu">
+
+        <table>
+
+            <tr>
+                <th>Item ID</th>
+                <th>Food Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Rating</th>
+            </tr>
+
+            <tbody id="menuData">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function showMenu() {
+
+    document.getElementById("menu").style.display = "block";
+
+    fetch("menu.xml")
+        .then(response => response.text())
+        .then(data => {
+
+            let parser = new DOMParser();
+            let xml = parser.parseFromString(data, "text/xml");
+
+            let items = xml.getElementsByTagName("item");
+
+            let output = "";
+
+            for (let i = 0; i < items.length; i++) {
+
+                let id = items[i].getElementsByTagName("id")[0].textContent;
+                let name = items[i].getElementsByTagName("name")[0].textContent;
+                let category = items[i].getElementsByTagName("category")[0].textContent;
+                let price = items[i].getElementsByTagName("price")[0].textContent;
+                let rating = items[i].getElementsByTagName("rating")[0].textContent;
+
+                output += "<tr>";
+
+                output += "<td>" + id + "</td>";
+                output += "<td>" + name + "</td>";
+                output += "<td>" + category + "</td>";
+                output += "<td>" + price + "</td>";
+                output += "<td>" + rating + "</td>";
+
+                output += "</tr>";
+            }
+
+            document.getElementById("menuData").innerHTML = output;
+
+        });
+
+}
+
+</script>
+
+</body>
+
+</html>

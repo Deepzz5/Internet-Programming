@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<foods>
+
+    <food>
+        <name>Pizza</name>
+        <category>Fast Food</category>
+        <price>250</price>
+        <rating>4.5</rating>
+    </food>
+
+    <food>
+        <name>Veg Burger</name>
+        <category>Fast Food</category>
+        <price>150</price>
+        <rating>4.2</rating>
+    </food>
+
+    <food>
+        <name>Chicken Biryani</name>
+        <category>Indian</category>
+        <price>220</price>
+        <rating>4.7</rating>
+    </food>
+
+    <food>
+        <name>Masala Dosa</name>
+        <category>South Indian</category>
+        <price>80</price>
+        <rating>4.6</rating>
+    </food>
+
+    <food>
+        <name>Paneer Butter Masala</name>
+        <category>Indian</category>
+        <price>180</price>
+        <rating>4.4</rating>
+    </food>
+
+    <food>
+        <name>Fried Rice</name>
+        <category>Chinese</category>
+        <price>160</price>
+        <rating>4.3</rating>
+    </food>
+
+    <food>
+        <name>Chicken Noodles</name>
+        <category>Chinese</category>
+        <price>170</price>
+        <rating>4.5</rating>
+    </food>
+
+    <food>
+        <name>Idli</name>
+        <category>South Indian</category>
+        <price>60</price>
+        <rating>4.1</rating>
+    </food>
+
+    <food>
+        <name>Gulab Jamun</name>
+        <category>Dessert</category>
+        <price>90</price>
+        <rating>4.8</rating>
+    </food>
+
+    <food>
+        <name>Ice Cream</name>
+        <category>Dessert</category>
+        <price>100</price>
+        <rating>4.6</rating>
+    </food>
+
+</foods>

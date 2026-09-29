@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menu>
+
+    <item>
+        <id>201</id>
+        <name>Chicken Biryani</name>
+        <category>Main Course</category>
+        <price>220</price>
+        <rating>4.8</rating>
+    </item>
+
+    <item>
+        <id>202</id>
+        <name>Masala Dosa</name>
+        <category>South Indian</category>
+        <price>90</price>
+        <rating>4.6</rating>
+    </item>
+
+    <item>
+        <id>203</id>
+        <name>Paneer Tikka</name>
+        <category>Starter</category>
+        <price>180</price>
+        <rating>4.5</rating>
+    </item>
+
+    <item>
+        <id>204</id>
+        <name>Veg Fried Rice</name>
+        <category>Chinese</category>
+        <price>140</price>
+        <rating>4.3</rating>
+    </item>
+
+    <item>
+        <id>205</id>
+        <name>Chicken Noodles</name>
+        <category>Chinese</category>
+        <price>170</price>
+        <rating>4.5</rating>
+    </item>
+
+    <item>
+        <id>206</id>
+        <name>Margherita Pizza</name>
+        <category>Fast Food</category>
+        <price>250</price>
+        <rating>4.7</rating>
+    </item>
+
+    <item>
+        <id>207</id>
+        <name>Veg Burger</name>
+        <category>Fast Food</category>
+        <price>130</price>
+        <rating>4.2</rating>
+    </item>
+
+    <item>
+        <id>208</id>
+        <name>Gulab Jamun</name>
+        <category>Dessert</category>
+        <price>80</price>
+        <rating>4.8</rating>
+    </item>
+
+    <item>
+        <id>209</id>
+        <name>Chocolate Brownie</name>
+        <category>Dessert</category>
+        <price>120</price>
+        <rating>4.6</rating>
+    </item>
+
+    <item>
+        <id>210</id>
+        <name>Fresh Lime Soda</name>
+        <category>Beverage</category>
+        <price>60</price>
+        <rating>4.4</rating>
+    </item>
+
+</menu>
